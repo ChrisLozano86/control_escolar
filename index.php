@@ -39,7 +39,7 @@ session_start();
 			<h3 class="text-center">Sistema de apoyo para servicios escolares </h3> 
 			<h3 class="text-center">Plantel Comonfort </h3> 
 			<br>
-			<img src = "images/logo_1.png" style="width: 40%; height: auto; margin-left: 30%;" />
+			<img src = "images/logo.png" style="width: 40%; height: auto; margin-left: 30%;" />
 				<form action="lib/validar_login.php" class="login100-form validate-form" method="post">
 					<span class="login100-form-title p-b-33">
 						Iniciar sesión
