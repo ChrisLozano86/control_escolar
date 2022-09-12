@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 07-04-2022 a las 16:22:02
--- Versión del servidor: 10.4.10-MariaDB
--- Versión de PHP: 7.3.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 09-09-2022 a las 15:59:13
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bd_serviciosescolares`
+-- Base de datos: `controlescolar`
 --
 
 -- --------------------------------------------------------
@@ -28,9 +27,8 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `alumnos`
 --
 
-DROP TABLE IF EXISTS `alumnos`;
-CREATE TABLE IF NOT EXISTS `alumnos` (
-  `alumnopk` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `alumnos` (
+  `alumnopk` int(10) UNSIGNED NOT NULL,
   `nomAlumno` varchar(50) NOT NULL,
   `apePaterno` varchar(50) NOT NULL,
   `apeMaterno` varchar(50) NOT NULL,
@@ -84,24 +82,8 @@ CREATE TABLE IF NOT EXISTS `alumnos` (
   `docCertSec` varchar(100) DEFAULT NULL,
   `docSurems` varchar(100) DEFAULT NULL,
   `docCertCecy` varchar(100) DEFAULT NULL,
-  `periodofk` int(10) UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`alumnopk`),
-  UNIQUE KEY `ficha` (`ficha`),
-  KEY `estatus` (`estatus`),
-  KEY `especialidad` (`especialidad`),
-  KEY `semestre` (`semestre`),
-  KEY `grupo` (`grupo`),
-  KEY `extracurricular` (`extracurricular`),
-  KEY `propedeutica1` (`propedeutica1`),
-  KEY `propedeutica2` (`propedeutica2`),
-  KEY `lugarNac` (`lugarNac`),
-  KEY `periodofk` (`periodofk`),
-  KEY `ts` (`ts`),
-  KEY `causaBaja` (`causaBaja`),
-  KEY `estadoDom` (`estadoDom`),
-  KEY `estadoSecundaria` (`estadoSecundaria`),
-  KEY `alumnos_ibfk_16` (`turno`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+  `periodofk` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `alumnos`
@@ -129,12 +111,10 @@ INSERT INTO `alumnos` (`alumnopk`, `nomAlumno`, `apePaterno`, `apeMaterno`, `cla
 -- Estructura de tabla para la tabla `causasbaja`
 --
 
-DROP TABLE IF EXISTS `causasbaja`;
-CREATE TABLE IF NOT EXISTS `causasbaja` (
-  `causaBaja` tinyint(2) NOT NULL AUTO_INCREMENT,
-  `razon` varchar(150) NOT NULL,
-  PRIMARY KEY (`causaBaja`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+CREATE TABLE `causasbaja` (
+  `causaBaja` tinyint(2) NOT NULL,
+  `razon` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `causasbaja`
@@ -152,13 +132,11 @@ INSERT INTO `causasbaja` (`causaBaja`, `razon`) VALUES
 -- Estructura de tabla para la tabla `especialidades`
 --
 
-DROP TABLE IF EXISTS `especialidades`;
-CREATE TABLE IF NOT EXISTS `especialidades` (
-  `especialidad` tinyint(1) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `especialidades` (
+  `especialidad` tinyint(1) NOT NULL,
   `nomEspe` varchar(100) NOT NULL,
-  `claveEspe` varchar(50) NOT NULL,
-  PRIMARY KEY (`especialidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  `claveEspe` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `especialidades`
@@ -177,12 +155,10 @@ INSERT INTO `especialidades` (`especialidad`, `nomEspe`, `claveEspe`) VALUES
 -- Estructura de tabla para la tabla `estatus`
 --
 
-DROP TABLE IF EXISTS `estatus`;
-CREATE TABLE IF NOT EXISTS `estatus` (
-  `estatus` tinyint(2) NOT NULL AUTO_INCREMENT,
-  `nomEstatus` varchar(30) NOT NULL,
-  PRIMARY KEY (`estatus`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+CREATE TABLE `estatus` (
+  `estatus` tinyint(2) NOT NULL,
+  `nomEstatus` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `estatus`
@@ -208,12 +184,10 @@ INSERT INTO `estatus` (`estatus`, `nomEstatus`) VALUES
 -- Estructura de tabla para la tabla `extracurriculares`
 --
 
-DROP TABLE IF EXISTS `extracurriculares`;
-CREATE TABLE IF NOT EXISTS `extracurriculares` (
-  `extracurricular` tinyint(2) NOT NULL AUTO_INCREMENT,
-  `nomExtra` varchar(100) NOT NULL,
-  PRIMARY KEY (`extracurricular`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+CREATE TABLE `extracurriculares` (
+  `extracurricular` tinyint(2) NOT NULL,
+  `nomExtra` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `extracurriculares`
@@ -231,12 +205,10 @@ INSERT INTO `extracurriculares` (`extracurricular`, `nomExtra`) VALUES
 -- Estructura de tabla para la tabla `grupos`
 --
 
-DROP TABLE IF EXISTS `grupos`;
-CREATE TABLE IF NOT EXISTS `grupos` (
-  `grupo` tinyint(1) NOT NULL AUTO_INCREMENT,
-  `letra` varchar(5) NOT NULL,
-  PRIMARY KEY (`grupo`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+CREATE TABLE `grupos` (
+  `grupo` tinyint(1) NOT NULL,
+  `letra` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `grupos`
@@ -260,12 +232,10 @@ INSERT INTO `grupos` (`grupo`, `letra`) VALUES
 -- Estructura de tabla para la tabla `lugares`
 --
 
-DROP TABLE IF EXISTS `lugares`;
-CREATE TABLE IF NOT EXISTS `lugares` (
-  `lugarNac` tinyint(2) NOT NULL AUTO_INCREMENT,
-  `nomLugar` varchar(100) NOT NULL,
-  PRIMARY KEY (`lugarNac`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+CREATE TABLE `lugares` (
+  `lugarNac` tinyint(2) NOT NULL,
+  `nomLugar` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `lugares`
@@ -312,15 +282,13 @@ INSERT INTO `lugares` (`lugarNac`, `nomLugar`) VALUES
 -- Estructura de tabla para la tabla `periodosescolares`
 --
 
-DROP TABLE IF EXISTS `periodosescolares`;
-CREATE TABLE IF NOT EXISTS `periodosescolares` (
-  `periodopk` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `periodosescolares` (
+  `periodopk` int(10) UNSIGNED NOT NULL,
   `mesInicio` varchar(30) NOT NULL,
   `mesFinal` varchar(30) NOT NULL,
   `anioInicio` varchar(4) NOT NULL,
-  `anioFinal` varchar(4) NOT NULL,
-  PRIMARY KEY (`periodopk`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+  `anioFinal` varchar(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `periodosescolares`
@@ -346,12 +314,10 @@ INSERT INTO `periodosescolares` (`periodopk`, `mesInicio`, `mesFinal`, `anioInic
 -- Estructura de tabla para la tabla `propedeuticas`
 --
 
-DROP TABLE IF EXISTS `propedeuticas`;
-CREATE TABLE IF NOT EXISTS `propedeuticas` (
-  `propedeutica` tinyint(2) NOT NULL AUTO_INCREMENT,
-  `nomPrope` varchar(100) NOT NULL,
-  PRIMARY KEY (`propedeutica`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+CREATE TABLE `propedeuticas` (
+  `propedeutica` tinyint(2) NOT NULL,
+  `nomPrope` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `propedeuticas`
@@ -370,12 +336,10 @@ INSERT INTO `propedeuticas` (`propedeutica`, `nomPrope`) VALUES
 -- Estructura de tabla para la tabla `semestres`
 --
 
-DROP TABLE IF EXISTS `semestres`;
-CREATE TABLE IF NOT EXISTS `semestres` (
-  `semestre` tinyint(1) NOT NULL AUTO_INCREMENT,
-  `nomSemestre` varchar(20) NOT NULL,
-  PRIMARY KEY (`semestre`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+CREATE TABLE `semestres` (
+  `semestre` tinyint(1) NOT NULL,
+  `nomSemestre` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `semestres`
@@ -400,12 +364,10 @@ INSERT INTO `semestres` (`semestre`, `nomSemestre`) VALUES
 -- Estructura de tabla para la tabla `tipossang`
 --
 
-DROP TABLE IF EXISTS `tipossang`;
-CREATE TABLE IF NOT EXISTS `tipossang` (
-  `ts` tinyint(1) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(5) NOT NULL,
-  PRIMARY KEY (`ts`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+CREATE TABLE `tipossang` (
+  `ts` tinyint(1) NOT NULL,
+  `nom` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `tipossang`
@@ -427,12 +389,10 @@ INSERT INTO `tipossang` (`ts`, `nom`) VALUES
 -- Estructura de tabla para la tabla `turnos`
 --
 
-DROP TABLE IF EXISTS `turnos`;
-CREATE TABLE IF NOT EXISTS `turnos` (
-  `turno` tinyint(1) NOT NULL AUTO_INCREMENT,
-  `nomTurno` varchar(15) NOT NULL,
-  PRIMARY KEY (`turno`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `turnos` (
+  `turno` tinyint(1) NOT NULL,
+  `nomTurno` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `turnos`
@@ -449,30 +409,193 @@ INSERT INTO `turnos` (`turno`, `nomTurno`) VALUES
 -- Estructura de tabla para la tabla `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS `usuarios` (
-  `usuariopk` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `usuarios` (
+  `usuariopk` int(11) NOT NULL,
   `nombre` varchar(200) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `estatus` tinyint(1) NOT NULL COMMENT '1=Activo; 2=Inactivo',
-  `privilegios` tinyint(1) NOT NULL COMMENT '1=Superadministrador; 2=Administrador; 3=Administrativo;',
-  PRIMARY KEY (`usuariopk`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `privilegios` tinyint(1) NOT NULL COMMENT '1=Superadministrador; 2=Administrador; 3=Administrativo;'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `usuarios`
+-- Índices para tablas volcadas
 --
 
-INSERT INTO `usuarios` (`usuariopk`, `nombre`, `email`, `password`, `estatus`, `privilegios`) VALUES
-(1, 'admin', 'admin@gmail.com', '12345', 1, 1),
-(2, 'Fidel Ambriz', 'fidelambriz@gmail.com', '12345', 2, 3),
-(5, 'Carlos RodrÃ­guez', 'charly@gmail.com', '12345', 1, 2),
-(6, 'Carlos Acevedo', 'carlos@gmail.com', '12345', 1, 3),
-(7, 'Ma de JesÃºs HernÃ¡ndez', 'majesus@gmail.com', '12345', 2, 1),
-(8, 'JesÃºs Corona', 'corona@gmail.com', '12345', 1, 2),
-(9, 'administrativo', 'administrativo@gmail.com', '12345', 1, 3),
-(10, 'Super Administrador', 'superadmin@gmail.com', '12345', 1, 1);
+--
+-- Indices de la tabla `alumnos`
+--
+ALTER TABLE `alumnos`
+  ADD PRIMARY KEY (`alumnopk`),
+  ADD UNIQUE KEY `ficha` (`ficha`),
+  ADD KEY `estatus` (`estatus`),
+  ADD KEY `especialidad` (`especialidad`),
+  ADD KEY `semestre` (`semestre`),
+  ADD KEY `grupo` (`grupo`),
+  ADD KEY `extracurricular` (`extracurricular`),
+  ADD KEY `propedeutica1` (`propedeutica1`),
+  ADD KEY `propedeutica2` (`propedeutica2`),
+  ADD KEY `lugarNac` (`lugarNac`),
+  ADD KEY `periodofk` (`periodofk`),
+  ADD KEY `ts` (`ts`),
+  ADD KEY `causaBaja` (`causaBaja`),
+  ADD KEY `estadoDom` (`estadoDom`),
+  ADD KEY `estadoSecundaria` (`estadoSecundaria`),
+  ADD KEY `alumnos_ibfk_16` (`turno`);
+
+--
+-- Indices de la tabla `causasbaja`
+--
+ALTER TABLE `causasbaja`
+  ADD PRIMARY KEY (`causaBaja`);
+
+--
+-- Indices de la tabla `especialidades`
+--
+ALTER TABLE `especialidades`
+  ADD PRIMARY KEY (`especialidad`);
+
+--
+-- Indices de la tabla `estatus`
+--
+ALTER TABLE `estatus`
+  ADD PRIMARY KEY (`estatus`);
+
+--
+-- Indices de la tabla `extracurriculares`
+--
+ALTER TABLE `extracurriculares`
+  ADD PRIMARY KEY (`extracurricular`);
+
+--
+-- Indices de la tabla `grupos`
+--
+ALTER TABLE `grupos`
+  ADD PRIMARY KEY (`grupo`);
+
+--
+-- Indices de la tabla `lugares`
+--
+ALTER TABLE `lugares`
+  ADD PRIMARY KEY (`lugarNac`);
+
+--
+-- Indices de la tabla `periodosescolares`
+--
+ALTER TABLE `periodosescolares`
+  ADD PRIMARY KEY (`periodopk`);
+
+--
+-- Indices de la tabla `propedeuticas`
+--
+ALTER TABLE `propedeuticas`
+  ADD PRIMARY KEY (`propedeutica`);
+
+--
+-- Indices de la tabla `semestres`
+--
+ALTER TABLE `semestres`
+  ADD PRIMARY KEY (`semestre`);
+
+--
+-- Indices de la tabla `tipossang`
+--
+ALTER TABLE `tipossang`
+  ADD PRIMARY KEY (`ts`);
+
+--
+-- Indices de la tabla `turnos`
+--
+ALTER TABLE `turnos`
+  ADD PRIMARY KEY (`turno`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuariopk`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `alumnos`
+--
+ALTER TABLE `alumnos`
+  MODIFY `alumnopk` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT de la tabla `causasbaja`
+--
+ALTER TABLE `causasbaja`
+  MODIFY `causaBaja` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `especialidades`
+--
+ALTER TABLE `especialidades`
+  MODIFY `especialidad` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `estatus`
+--
+ALTER TABLE `estatus`
+  MODIFY `estatus` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `extracurriculares`
+--
+ALTER TABLE `extracurriculares`
+  MODIFY `extracurricular` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `grupos`
+--
+ALTER TABLE `grupos`
+  MODIFY `grupo` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `lugares`
+--
+ALTER TABLE `lugares`
+  MODIFY `lugarNac` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
+-- AUTO_INCREMENT de la tabla `periodosescolares`
+--
+ALTER TABLE `periodosescolares`
+  MODIFY `periodopk` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de la tabla `propedeuticas`
+--
+ALTER TABLE `propedeuticas`
+  MODIFY `propedeutica` tinyint(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `semestres`
+--
+ALTER TABLE `semestres`
+  MODIFY `semestre` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `tipossang`
+--
+ALTER TABLE `tipossang`
+  MODIFY `ts` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT de la tabla `turnos`
+--
+ALTER TABLE `turnos`
+  MODIFY `turno` tinyint(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `usuariopk` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

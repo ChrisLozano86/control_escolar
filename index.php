@@ -31,11 +31,15 @@ session_start();
 <!--===============================================================================================-->
 </head>
 <body>
-	
+
 	<div class="limiter">
+	
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
-			<img src = "images/logocecyte.jpg" height = "180" width = "350" style="margin-top: -50px;"/>
+			<h3 class="text-center">Sistema de apoyo para servicios escolares </h3> 
+			<h3 class="text-center">Plantel Comonfort </h3> 
+			<br>
+			<img src = "images/logo_1.png" style="width: 40%; height: auto; margin-left: 30%;" />
 				<form action="lib/validar_login.php" class="login100-form validate-form" method="post">
 					<span class="login100-form-title p-b-33">
 						Iniciar sesión
